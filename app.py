@@ -13,27 +13,30 @@ class Product(db.Model):
     __tablename__ = "products"
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
+    name = db.Column(db.String, nullable=False)
     price = db.Column(db.Float, nullable=False)
     stock = db.Column(db.Integer, default=0)
 
     def __repr__(self):
         return f"<Product id={self.id} name='{self.name}' price={self.price} stock={self.stock}>"
 
-# 🔹 Inicializar DB
+#inicializar base de datos
 def init_db():
     with app.app_context():
         db.create_all()
         print("Base de datos creada")
 
-# 🔹 CREATE (Insertar productos)
+# Insertar productos
 def create_products():
     with app.app_context():
         p1 = Product(name="Laptop", price=3500.50, stock=5)
         p2 = Product(name="Mouse", price=50.99, stock=20)
-        p3 = Product(name="Teclado", price=120.00)  # stock por defecto = 0
+        p3 = Product(name="Teclado", price=120.00)
+        p4 = Product(name="Audifono", price=250.00)
+        p5 = Product(name="MousePad", price=149.90)
 
-        db.session.add_all([p1, p2, p3])
+
+        db.session.add_all([p1, p2, p3, p4, p5])
         db.session.commit()
 
         print("Productos creados")
