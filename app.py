@@ -51,14 +51,14 @@ def read_products():
             print(p)
 
         #Productos con precio mayor a 100
-        print("\nProductos con precio > 100:")
-        filtered = Product.query.filter(Product.price > 100).all()
+        print("\nProductos con precio > 240:")
+        filtered = Product.query.filter(Product.price > 240).all()
         for p in filtered:
             print(p)
 
         #Consulta de un solo registro
         print("\nProducto con id=1:")
-        product = Product.query.get(1)
+        product = Product.query.filter_by(id = 1).first()
         if product:
             print(product)
         else:
@@ -93,8 +93,8 @@ def delete_product():
             print("Producto no encontrado")
 
 if __name__ == '__main__':
-    init_db()
-    create_products()
-    read_products()
-    update_product()
+    # init_db()
+    # create_products()
+    # read_products()
+    # update_product()
     delete_product()
